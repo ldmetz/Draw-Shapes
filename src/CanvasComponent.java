@@ -1,6 +1,3 @@
-//Levi Metzger
-//Shapes Phase 4
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;

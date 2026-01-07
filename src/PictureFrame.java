@@ -1,6 +1,3 @@
-//Levi Metzger
-//Shapes Phase 4
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -22,7 +19,7 @@ public class PictureFrame extends JFrame{
     private JToggleButton lineButton;
     private JToggleButton boxButton;
     private JToggleButton ovalButton;
-    private ButtonGroup toggleGroup;
+    private ButtonGroup effectsGroup;
     private JPanel effectsButtonPanel;
     private JToggleButton trailsToggle;
     private JToggleButton nestingToggle;
@@ -38,8 +35,8 @@ public class PictureFrame extends JFrame{
 
         mainButtonPanel = new JPanel();
         mainButtonPanel.setBorder(BorderFactory.createEtchedBorder());
-
         actionButtonPanel = new JPanel();
+
         saveButton = new JButton("Save");
         saveButton.addActionListener(e -> canvas.save());
 
@@ -64,6 +61,7 @@ public class PictureFrame extends JFrame{
 
         shapeButtonGroup = new ButtonGroup();
         shapeButtonPanel = new JPanel();
+
         shapeLabel = new JLabel("Shape:");
         shapeLabel.setFont(shapeLabel.getFont().deriveFont(Font.BOLD));
 
@@ -100,7 +98,7 @@ public class PictureFrame extends JFrame{
 
         mainButtonPanel.add(shapeButtonPanel);
 
-        toggleGroup = new ButtonGroup();
+        effectsGroup = new ButtonGroup();
         effectsButtonPanel = new JPanel();
 
         trailsToggle = new JToggleButton("Trails");
@@ -108,11 +106,12 @@ public class PictureFrame extends JFrame{
         trailsToggle.addItemListener(e -> canvas.setTrail(e.getStateChange() == ItemEvent.SELECTED));
         nestingToggle.addItemListener(e -> canvas.setNesting(e.getStateChange() == ItemEvent.SELECTED));
 
-        toggleGroup.add(trailsToggle);
-        toggleGroup.add(nestingToggle);
+        effectsGroup.add(trailsToggle);
+        effectsGroup.add(nestingToggle);
         
         effectsButtonPanel.add(trailsToggle);
         effectsButtonPanel.add(nestingToggle);
+        
         mainButtonPanel.add(effectsButtonPanel);
 
         for(AbstractButton b : new AbstractButton[] {saveButton, restoreButton, eraseButton, undoButton, lineButton, 
