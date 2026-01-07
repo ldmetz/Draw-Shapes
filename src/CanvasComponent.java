@@ -180,8 +180,10 @@ public class CanvasComponent extends JComponent {
      */
 
     public void undo(){
-        shapes.remove(shapes.size() - 1);
-        repaint();
+        if(shapes.size() > 0){
+            shapes.remove(shapes.size() - 1);
+            repaint();
+        }
     }
 
     public ShapeType getCurrentShapeType() {
