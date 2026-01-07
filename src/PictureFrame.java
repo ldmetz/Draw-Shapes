@@ -153,7 +153,6 @@ public class PictureFrame extends JFrame{
         public void mouseReleased(MouseEvent e){
             if(canvas.isNesting() && !canvas.getCurrentShapeType().equals(CanvasComponent.ShapeType.LINE)){
                 canvas.addNested(canvas.getlastShape());
-                repaint();
             }
         }
     }

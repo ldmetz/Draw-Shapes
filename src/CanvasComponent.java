@@ -95,6 +95,7 @@ public class CanvasComponent extends JComponent {
             addNested(smallerShape);
             shapes.add(smallerShape);
         }
+        repaint();
     }
 
     /**
