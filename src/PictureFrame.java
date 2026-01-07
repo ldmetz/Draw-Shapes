@@ -2,7 +2,6 @@
 //Shapes Phase 4
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import java.awt.event.*;
 import java.awt.*;
 
@@ -12,15 +11,19 @@ public class PictureFrame extends JFrame{
     private CanvasComponent canvas;
     private MouseHandler mouseListener;
     private JPanel mainButtonPanel;
+    private JPanel actionButtonPanel;
     private JButton saveButton;
     private JButton restoreButton;
     private JButton eraseButton;
     private JButton undoButton;
     private ButtonGroup shapeButtonGroup;
+    private JPanel shapeButtonPanel;
+    private JLabel shapeLabel;
     private JToggleButton lineButton;
     private JToggleButton boxButton;
     private JToggleButton ovalButton;
     private ButtonGroup toggleGroup;
+    private JPanel effectsButtonPanel;
     private JToggleButton trailsToggle;
     private JToggleButton nestingToggle;
     private JButton colorButton;
@@ -34,8 +37,9 @@ public class PictureFrame extends JFrame{
         add(canvas);
 
         mainButtonPanel = new JPanel();
-        mainButtonPanel.setBorder(new EtchedBorder());
+        mainButtonPanel.setBorder(BorderFactory.createEtchedBorder());
 
+        actionButtonPanel = new JPanel();
         saveButton = new JButton("Save");
         saveButton.addActionListener(e -> canvas.save());
 
@@ -48,12 +52,20 @@ public class PictureFrame extends JFrame{
         undoButton = new JButton("Undo");
         undoButton.addActionListener(e -> canvas.undo());
 
-        mainButtonPanel.add(saveButton);
-        mainButtonPanel.add(restoreButton);
-        mainButtonPanel.add(eraseButton);
-        mainButtonPanel.add(undoButton);
+        colorButton = new JButton("Color");
+        colorButton.addActionListener(e -> canvas.setColor(JColorChooser.showDialog(canvas, "Color Picker", Color.BLACK)));
+
+        actionButtonPanel.add(saveButton);
+        actionButtonPanel.add(restoreButton);
+        actionButtonPanel.add(eraseButton);
+        actionButtonPanel.add(undoButton);
+        actionButtonPanel.add(colorButton);
+        mainButtonPanel.add(actionButtonPanel);
 
         shapeButtonGroup = new ButtonGroup();
+        shapeButtonPanel = new JPanel();
+        shapeLabel = new JLabel("Shape:");
+        shapeLabel.setFont(shapeLabel.getFont().deriveFont(Font.BOLD));
 
         lineButton = new JToggleButton("Line");
         lineButton.setSelected(true);
@@ -81,31 +93,31 @@ public class PictureFrame extends JFrame{
         shapeButtonGroup.add(boxButton);
         shapeButtonGroup.add(ovalButton);
 
-        mainButtonPanel.add(lineButton);
-        mainButtonPanel.add(boxButton);
-        mainButtonPanel.add(ovalButton);
+        shapeButtonPanel.add(shapeLabel);
+        shapeButtonPanel.add(lineButton);
+        shapeButtonPanel.add(boxButton);
+        shapeButtonPanel.add(ovalButton);
+
+        mainButtonPanel.add(shapeButtonPanel);
 
         toggleGroup = new ButtonGroup();
+        effectsButtonPanel = new JPanel();
+
         trailsToggle = new JToggleButton("Trails");
         nestingToggle = new JToggleButton("Nesting");
-
         trailsToggle.addItemListener(e -> canvas.setTrail(e.getStateChange() == ItemEvent.SELECTED));
         nestingToggle.addItemListener(e -> canvas.setNesting(e.getStateChange() == ItemEvent.SELECTED));
 
         toggleGroup.add(trailsToggle);
         toggleGroup.add(nestingToggle);
         
-        mainButtonPanel.add(trailsToggle);
-        mainButtonPanel.add(nestingToggle);
-
-        colorButton = new JButton("Color");
-        colorButton.addActionListener(e -> canvas.setColor(JColorChooser.showDialog(canvas, "Color Picker", Color.BLACK)));
-        mainButtonPanel.add(colorButton);
+        effectsButtonPanel.add(trailsToggle);
+        effectsButtonPanel.add(nestingToggle);
+        mainButtonPanel.add(effectsButtonPanel);
 
         for(AbstractButton b : new AbstractButton[] {saveButton, restoreButton, eraseButton, undoButton, lineButton, 
             boxButton, ovalButton, trailsToggle, nestingToggle, colorButton}){
             b.setFocusPainted(false);
-            b.setBorderPainted(true);
         }
 
         add(mainButtonPanel, BorderLayout.SOUTH);
