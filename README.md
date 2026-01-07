@@ -1,18 +1,31 @@
-## Getting Started
+# Shape Drawing Program
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A simple Java paint application that allows the user to draw shapes on a canvas.
 
-## Folder Structure
+## Features
+- Draw lines, rectangles, and ovals
+- Customizable color
+- Add trails and nesting
+- Save/restore the canvas from a binary file
 
-The workspace contains two folders by default, where:
+<img width="884" height="848" alt="Screenshot 2026-01-06 190945" src="https://github.com/user-attachments/assets/3ff404c5-f22e-4c2d-9fb6-4934cf493ce4" />
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Run Locally
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Requires JDK 21+
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+### Clone repository:
+```bash
+  git clone https://github.com/ldmetz/Draw-Shapes.git
+```
 
-## Dependency Management
+### Build: 
+```bash
+  cd Draw-Shapes
+  javac -d out src/*.java
+```
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Run: 
+```bash
+  java -cp out PictureFrame
+```
