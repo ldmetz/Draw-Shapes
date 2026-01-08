@@ -19,7 +19,6 @@ public class PictureFrame extends JFrame{
     private JToggleButton lineButton;
     private JToggleButton boxButton;
     private JToggleButton ovalButton;
-    private ButtonGroup effectsGroup;
     private JPanel effectsButtonPanel;
     private JToggleButton trailsToggle;
     private JToggleButton nestingToggle;
@@ -98,16 +97,24 @@ public class PictureFrame extends JFrame{
 
         mainButtonPanel.add(shapeButtonPanel);
 
-        effectsGroup = new ButtonGroup();
         effectsButtonPanel = new JPanel();
 
         trailsToggle = new JToggleButton("Trails");
         nestingToggle = new JToggleButton("Nesting");
-        trailsToggle.addItemListener(e -> canvas.setTrail(e.getStateChange() == ItemEvent.SELECTED));
-        nestingToggle.addItemListener(e -> canvas.setNesting(e.getStateChange() == ItemEvent.SELECTED));
 
-        effectsGroup.add(trailsToggle);
-        effectsGroup.add(nestingToggle);
+        trailsToggle.addItemListener(e -> {
+            canvas.setTrail(trailsToggle.isSelected());
+            if(trailsToggle.isSelected()){
+                nestingToggle.setSelected(false);
+            }
+        });
+
+        nestingToggle.addItemListener(e -> {
+            canvas.setNesting(nestingToggle.isSelected());
+            if(nestingToggle.isSelected()){
+                trailsToggle.setSelected(false);
+            }
+        });
         
         effectsButtonPanel.add(trailsToggle);
         effectsButtonPanel.add(nestingToggle);
