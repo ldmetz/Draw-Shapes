@@ -8,7 +8,7 @@ A simple Java paint application that allows the user to draw shapes on a canvas.
 - Add trails and nesting
 - Save/restore the canvas from a binary file
 
-<img width="884" height="848" alt="Screenshot 2026-01-06 190945" src="https://github.com/user-attachments/assets/3ff404c5-f22e-4c2d-9fb6-4934cf493ce4" />
+<img width="1919" height="1006" alt="Program demo" src="https://github.com/user-attachments/assets/2ff32657-32f6-4984-a82b-048ad8234bdb" />
 
 ## Run Locally
 
