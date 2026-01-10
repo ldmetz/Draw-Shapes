@@ -8,9 +8,9 @@ public class PictureFrame extends JFrame{
     private CanvasComponent canvas;
     private MouseHandler mouseListener;
     private ButtonGroup shapeButtonGroup;
-    private JToggleButton lineButton;
-    private JToggleButton boxButton;
-    private JToggleButton ovalButton;
+    private JRadioButton lineButton;
+    private JRadioButton boxButton;
+    private JRadioButton ovalButton;
     private JToggleButton trailsToggle;
     private JToggleButton nestingToggle;
 
@@ -48,45 +48,6 @@ public class PictureFrame extends JFrame{
         actionButtonPanel.add(colorButton);
         mainButtonPanel.add(actionButtonPanel);
 
-        shapeButtonGroup = new ButtonGroup();
-        JPanel shapeButtonPanel = new JPanel();
-
-        JLabel shapeLabel = new JLabel("Shape:");
-        shapeLabel.setFont(shapeLabel.getFont().deriveFont(Font.BOLD));
-
-        lineButton = new JToggleButton("Line");
-        lineButton.setSelected(true);
-        lineButton.addItemListener(e -> {
-            if(lineButton.isSelected()){
-                canvas.setCurrentShapeType(CanvasComponent.ShapeType.LINE);
-            }
-        });
-
-        boxButton = new JToggleButton("Box");
-        boxButton.addItemListener(e -> {
-            if(boxButton.isSelected()){
-                canvas.setCurrentShapeType(CanvasComponent.ShapeType.BOX);
-            }
-        });
-
-        ovalButton = new JToggleButton("Oval");
-        ovalButton.addItemListener(e -> {
-            if(ovalButton.isSelected()){
-                canvas.setCurrentShapeType(CanvasComponent.ShapeType.OVAL);
-            }
-        });
-
-        shapeButtonGroup.add(lineButton);
-        shapeButtonGroup.add(boxButton);
-        shapeButtonGroup.add(ovalButton);
-
-        shapeButtonPanel.add(shapeLabel);
-        shapeButtonPanel.add(lineButton);
-        shapeButtonPanel.add(boxButton);
-        shapeButtonPanel.add(ovalButton);
-
-        mainButtonPanel.add(shapeButtonPanel);
-
         JPanel effectsButtonPanel = new JPanel();
 
         trailsToggle = new JToggleButton("Trails");
@@ -111,8 +72,48 @@ public class PictureFrame extends JFrame{
         
         mainButtonPanel.add(effectsButtonPanel);
 
-        for(AbstractButton b : new AbstractButton[] {saveButton, restoreButton, eraseButton, undoButton, lineButton, 
-            boxButton, ovalButton, trailsToggle, nestingToggle, colorButton}){
+        shapeButtonGroup = new ButtonGroup();
+        JPanel shapeButtonPanel = new JPanel();
+
+        JLabel shapeLabel = new JLabel("Shape:");
+        shapeLabel.setFont(shapeLabel.getFont().deriveFont(Font.BOLD));
+
+        lineButton = new JRadioButton("Line");
+        lineButton.setSelected(true);
+        lineButton.addItemListener(e -> {
+            if(lineButton.isSelected()){
+                canvas.setCurrentShapeType(CanvasComponent.ShapeType.LINE);
+            }
+        });
+
+        boxButton = new JRadioButton("Box");
+        boxButton.addItemListener(e -> {
+            if(boxButton.isSelected()){
+                canvas.setCurrentShapeType(CanvasComponent.ShapeType.BOX);
+            }
+        });
+
+        ovalButton = new JRadioButton("Oval");
+        ovalButton.addItemListener(e -> {
+            if(ovalButton.isSelected()){
+                canvas.setCurrentShapeType(CanvasComponent.ShapeType.OVAL);
+            }
+        });
+
+        shapeButtonGroup.add(lineButton);
+        shapeButtonGroup.add(boxButton);
+        shapeButtonGroup.add(ovalButton);
+
+        shapeButtonPanel.add(shapeLabel);
+        shapeButtonPanel.add(lineButton);
+        shapeButtonPanel.add(boxButton);
+        shapeButtonPanel.add(ovalButton);
+
+        mainButtonPanel.add(shapeButtonPanel);
+
+        for(AbstractButton b : new AbstractButton[] {saveButton, restoreButton,
+            eraseButton, undoButton, trailsToggle, nestingToggle, lineButton, 
+            boxButton, ovalButton, colorButton}){
             b.setFocusPainted(false);
         }
 
