@@ -3,52 +3,42 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class PictureFrame extends JFrame{
-    private final int FRAME_WIDTH = 600;
-    private final int FRAME_HEIGHT = 500;
+    private final int CANVAS_WIDTH = 600;
+    private final int CANVAS_HEIGHT = 500;
     private CanvasComponent canvas;
     private MouseHandler mouseListener;
-    private JPanel mainButtonPanel;
-    private JPanel actionButtonPanel;
-    private JButton saveButton;
-    private JButton restoreButton;
-    private JButton eraseButton;
-    private JButton undoButton;
     private ButtonGroup shapeButtonGroup;
-    private JPanel shapeButtonPanel;
-    private JLabel shapeLabel;
     private JToggleButton lineButton;
     private JToggleButton boxButton;
     private JToggleButton ovalButton;
-    private JPanel effectsButtonPanel;
     private JToggleButton trailsToggle;
     private JToggleButton nestingToggle;
-    private JButton colorButton;
 
     public PictureFrame(){
         setTitle("Draw Shapes");
         setLayout(new BorderLayout());
 
         canvas = new CanvasComponent();
-        canvas.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
         add(canvas);
 
-        mainButtonPanel = new JPanel();
+        JPanel mainButtonPanel = new JPanel();
         mainButtonPanel.setBorder(BorderFactory.createEtchedBorder());
-        actionButtonPanel = new JPanel();
+        JPanel actionButtonPanel = new JPanel();
 
-        saveButton = new JButton("Save");
+        JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> canvas.save());
 
-        restoreButton = new JButton("Restore");
+        JButton restoreButton = new JButton("Restore");
         restoreButton.addActionListener(e -> canvas.restore());
 
-        eraseButton = new JButton("Erase");
+        JButton eraseButton = new JButton("Erase");
         eraseButton.addActionListener(e -> canvas.clearCanvas());
 
-        undoButton = new JButton("Undo");
+        JButton undoButton = new JButton("Undo");
         undoButton.addActionListener(e -> canvas.undo());
 
-        colorButton = new JButton("Color");
+        JButton colorButton = new JButton("Color");
         colorButton.addActionListener(e -> canvas.setColor(JColorChooser.showDialog(canvas, "Color Picker", Color.BLACK)));
 
         actionButtonPanel.add(saveButton);
@@ -59,9 +49,9 @@ public class PictureFrame extends JFrame{
         mainButtonPanel.add(actionButtonPanel);
 
         shapeButtonGroup = new ButtonGroup();
-        shapeButtonPanel = new JPanel();
+        JPanel shapeButtonPanel = new JPanel();
 
-        shapeLabel = new JLabel("Shape:");
+        JLabel shapeLabel = new JLabel("Shape:");
         shapeLabel.setFont(shapeLabel.getFont().deriveFont(Font.BOLD));
 
         lineButton = new JToggleButton("Line");
@@ -97,7 +87,7 @@ public class PictureFrame extends JFrame{
 
         mainButtonPanel.add(shapeButtonPanel);
 
-        effectsButtonPanel = new JPanel();
+        JPanel effectsButtonPanel = new JPanel();
 
         trailsToggle = new JToggleButton("Trails");
         nestingToggle = new JToggleButton("Nesting");
